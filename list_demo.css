@@ -1,0 +1,26 @@
+#insertion-demo {
+  height: 200px;
+}
+
+.array-address, .array-index, .array-value {
+  background: #ffffc6;
+  text-align: center;
+  border: 1px solid #888;
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  transition: 1s;
+}
+
+.array-address {
+  background: #c6f2ff;
+}
+
+.array-addresses, .array-indices, .array-values {
+  margin-bottom: 8px;
+}
+
+.array-insert-form input, .array-insert-form button, .linkedlist-insert-form input, .linkedlist-insert-form button {
+  font-size: 32px;
+  width: 120px;
+}

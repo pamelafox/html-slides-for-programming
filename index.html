@@ -1,0 +1,395 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Using HTML Slides for Programming Classes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/dist/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/dist/theme/simple.css" id="theme">
+    <!-- CSS matching our Berkeley class website-->
+    <link rel="stylesheet" href="https://cs61a.org/assets/css/mono-blue.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata|Roboto:300,400,500|Work+Sans:400,700">
+    <!-- For list insertion demo -->
+    <link rel="stylesheet" href="list_demo.css">
+    <style>
+    .reveal {
+      font-family: "Work Sans", sans-serif;
+    }
+
+    .reveal .slides section {
+      text-align: left;
+      font-size: smaller;
+     }
+
+    .reveal pre {
+      background-color: #f5f5f5;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: none;
+    }
+
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+      font-family: "Roboto", sans-serif;
+      color: #0072c1;
+    }
+
+    .reveal h3 {
+      margin-bottom: 40px;
+    }
+
+    .reveal section.heading-only {
+      text-align:center;
+      padding-top:20%;
+    }
+
+    .no-code-badge .code-badge {
+        display: none;
+    }
+
+    .code-badge-language {
+        display: none;
+    }
+
+    .python-tutor-link {
+      font-size: smaller;
+    }
+
+    .python-tutor-link:before {
+      content: "";
+      display: block;
+      background: url("http://pythontutor.com/favicon.ico") no-repeat;
+      width: 48px;
+      height: 48px;
+      float: left;
+      margin: 0 6px 0 0;
+    }
+
+    .smaller {
+      font-size: smaller;
+    }
+
+    code {
+      padding: 2px 4px;
+      font-size: 90%;
+      color: #0072c1;
+      background-color: #f9f2f4;
+      border-radius: 4px;
+    }
+
+    p.padded {
+      margin-top: 32px;
+    }
+
+    section .row {
+      display: flex;
+    }
+
+    section .column {
+      flex: 48%;
+      margin: 10px;
+    }
+
+    @media print {
+      .no-print, .no-print * {
+        display: none !important;
+      }
+    }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section class="heading-only" style="padding-top:5%">
+          <h1>Conclusion</h1>
+
+          <div class="no-print" style="text-align: left; margin-top: 100px; font-size: 70%;">
+            Tips for navigating the slides:
+            <ul>
+              <li>Press O or Escape for overview mode.</li>
+              <li>Visit <a href="?print-pdf" target="_blank">this link</a> for a nice printable version</li>
+              <li>Press the copy icon on the upper right of code blocks to copy the code</li>
+            </ul>
+          </div>
+
+        </section>
+
+        <section>
+          <h3>Common slide formats</h3>
+
+          <table>
+            <tr>
+              <td>Format</td><td>Benefits</td>
+            </tr>
+            <tr>
+              <td>Powerpoint</td><td>Easy diagrams, animations</td>
+            </tr>
+            <tr>
+              <td>Google Slides</td><td>Ditto, plus accessible online</td>
+            </tr>
+            <tr>
+              <td>PDF (from LaTeX)</td><td>Good if you love LaTeX!</td>
+            </tr>
+          </table>
+
+          <p>The problem with all of those...
+          <ul>
+            <li class="fragment">For instructors: Hard to write syntax-highlighted code</li>
+            <li class="fragment">For studemts: Hard to copy code</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Alternative: HTML slides!</h3>
+
+          <p>Write your slides in HTML and use JavaScript to 
+            turn them into an interactive slides experience.
+          </p>
+
+          <div class="fragment">
+            <p>The most fully featured JavaScript library is
+              <a href="https://revealjs.com/">RevealJS</a>
+              and it includes support for:
+            </p>
+            <ul>
+              <li>Mouse and keyboard navigation</li>
+              <li>Speaker notes</li>
+              <li>Easy animation/transitions</li>
+              <li>A special print layout</li>
+              <li>...much more, especially with plugins!</li>
+            </ul>
+          </div>
+
+          <aside class="speaker-notes">
+            View source to show how these are written. Hi, viewer!
+          </aside>
+        </section>
+
+        <section>
+          <h3>Code highlighting</h3>
+
+          <p>The <a href="https://revealjs.com/code/">HighlightJS plugin</a>
+          takes care of highlighting code for you, with customizable themes.
+          </p>
+          <pre><code data-trim data-noescape class="python">
+          nums = [1, 2, 4]
+          for i in range(0, len(nums)):
+              nums[i] = nums[i] ** 2
+          </code></pre>
+          
+          <p>You can easily reveal parts of the code, by wrapping in a <code>span</code>
+            with a class of "fragment":</p>
+
+          <pre><code data-trim data-noescape class="python">
+          min(-1, 400, -30)  <span class="fragment"># Result: -30</span>
+          max(-1, 400, -30)  <span class="fragment"># Result: 400</span>
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>Easy code copying</h3>
+
+          <p>Since these slides are a website, copying anything is already easy.
+          </p>
+
+          <p>But the <a href="https://github.com/RickStrahl/highlightjs-badge">HighlightJS badge plugin</a>
+          makes it even easier by adding a copy button.
+          </p>
+
+          <pre><code data-trim data-noescape class="python">
+          nums = [1, 2, 4]
+          for i in range(0, len(nums)):
+              nums[i] = nums[i] ** 2
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Animations & simulations</h2>
+        </section>
+        
+        <section>
+          <h3>Animated diagrams</h3>
+
+          <p>You can embed SVGs and animate through them by adding
+            a class of "fragment" to parts of the SVG.
+          </p>
+
+          <svg id="Layer_1" data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg" width="629.21" height="494.89" viewBox="0 0 629.21 494.89">
+            <defs>
+              <style>
+                .cls-1 {
+                  font-size: 26px;
+                  font-family: Courier;
+                }
+
+                .cls-2, .cls-3 {
+                  fill: #662d91;
+                  stroke: #662d91;
+                }
+
+                .cls-2, .cls-3, .cls-4, .cls-5 {
+                  stroke-miterlimit: 10;
+                }
+
+                .cls-2, .cls-5 {
+                  stroke-width: 2px;
+                }
+
+                .cls-4, .cls-5 {
+                  fill: none;
+                  stroke: #006837;
+                }
+
+                .cls-6 {
+                  fill: #f15a24;
+                }
+
+                .cls-7 {
+                  font-size: 31.16px;
+                  fill: #fff;
+                }
+              </style>
+              </defs>
+              <text class="cls-1" transform="translate(103.72 101.18)">add(add(6, mul(4, 6)), mul(3, 5))</text>
+              <g class="fragment">
+                  <text class="cls-1" transform="translate(0 241.41)">add</text>
+                  <line class="cls-2" x1="105.34" y1="113.35" x2="146.34" y2="113.35"/>
+                  <line class="cls-3" x1="25.34" y1="215.35" x2="124.34" y2="113.35"/>
+              </g>
+              <g class="fragment">
+                  <line class="cls-4" x1="203.34" y1="215.35" x2="282.34" y2="113.35"/>
+                  <text class="cls-1" transform="translate(98.96 241.41)">add(6, mul(4, 6))</text>
+                  <line class="cls-5" x1="162.84" y1="113.35" x2="419.84" y2="113.35"/>
+              </g>
+              <g class="fragment">
+                  <text class="cls-1" transform="translate(35.78 373.25)">add</text>
+                  <line class="cls-2" x1="101.34" y1="254.35" x2="142.34" y2="254.35"/>
+                  <line class="cls-3" x1="59.84" y1="345.85" x2="120.34" y2="253.35"/>
+              </g>
+              <g class="fragment">
+                  <text class="cls-1" transform="translate(139 373.25)">6</text>
+                  <line class="cls-5" x1="161.34" y1="254.35" x2="185.34" y2="254.35"/>
+                  <line class="cls-4" x1="151.84" y1="345.85" x2="172.84" y2="255.35"/>
+              </g>
+              <g class="fragment">
+                  <line class="cls-4" x1="269.84" y1="345.85" x2="269.84" y2="253.85"/>
+                  <text class="cls-1" transform="translate(212.4 373.25)">mul(4, 6)</text>
+                  <line class="cls-5" x1="213.34" y1="254.35" x2="339.34" y2="254.35"/>
+              </g>
+              <g class="fragment">
+                  <text class="cls-1" transform="translate(191.6 484.25)">mul</text>
+                  <line class="cls-2" x1="213.34" y1="384.35" x2="254.34" y2="384.35"/>
+                  <line class="cls-3" x1="217.84" y1="462.85" x2="232.34" y2="383.35"/>
+              </g>
+              <g class="fragment">
+                  <text class="cls-1" transform="translate(279.71 484.25)">4</text>
+                  <line class="cls-5" x1="274.34" y1="384.35" x2="298.34" y2="384.35"/>
+                  <line class="cls-4" x1="285.84" y1="455.85" x2="285.84" y2="385.35"/>
+              </g>
+              <g class="fragment">
+                  <text class="cls-1" transform="translate(336.6 484.25)">6</text>
+                  <line class="cls-5" x1="323.46" y1="384.35" x2="347.46" y2="384.35"/>
+                  <line class="cls-4" x1="347.84" y1="455.85" x2="334.96" y2="385.19"/>
+              </g>
+              <g class="fragment">
+                  <rect class="cls-6" x="203.59" y="288.01" width="151" height="57.35" rx="28.67"/>
+                  <text class="cls-7" transform="translate(268.75 326.43)">24</text>
+              </g>
+              <g class="fragment">
+                  <rect class="cls-6" x="90.52" y="158.01" width="267.83" height="57.35" rx="28.67"/>
+                  <text class="cls-7" transform="translate(211.91 196.43)">30</text>
+              </g>
+              <g class="fragment">
+                  <line class="cls-4" x1="543.34" y1="215.35" x2="541.16" y2="113.76"/>
+                  <text class="cls-1" transform="translate(483.21 241.41)">mul(3, 5)</text>
+                  <line class="cls-5" x1="461.34" y1="113.35" x2="606.34" y2="113.35"/>
+              </g>
+              <g class="fragment">
+                  <text class="cls-1" transform="translate(457.01 373.25)">mul</text>
+                  <line class="cls-2" x1="484.36" y1="252.2" x2="525.36" y2="252.2"/>
+                  <line class="cls-3" x1="488.86" y1="346.35" x2="503.36" y2="251.2"/>
+              </g>
+              <g class="fragment">
+                  <text class="cls-1" transform="translate(550.91 373.25)">3</text>
+                  <line class="cls-5" x1="545.36" y1="252.2" x2="569.36" y2="252.2"/>
+                  <line class="cls-4" x1="556.84" y1="345.85" x2="556.86" y2="253.59"/>
+              </g>
+              <g class="fragment">
+                  <text class="cls-1" transform="translate(613.6 373.25)">5</text>
+                  <line class="cls-5" x1="594.47" y1="252.2" x2="618.47" y2="252.2"/>
+                  <line class="cls-4" x1="619.84" y1="345.85" x2="605.97" y2="253.4"/>
+              </g>
+              <g class="fragment">
+                  <rect class="cls-6" x="475.34" y="158.01" width="151" height="57.35" rx="28.67"/>
+                  <text class="cls-7" transform="translate(540.5 196.43)">15</text>
+              </g>
+              <g class="fragment">
+                  <rect class="cls-6" x="124.34" width="469" height="57.35" rx="28.67"/>
+                  <text class="cls-7" transform="translate(324.74 38.42)">45</text>
+              </g>
+          </svg>
+        </section>
+
+        <section>
+          <h3>JS-powered animations</h3>
+
+          <p>For fancier animations, you can use JS/CSS
+            to write them from scratch.
+          </p>
+
+          <p class="smaller">List insertion demo:</p>
+
+          <div style="position:relative;" id="insertion-demo">
+          </div>
+
+          <form class="array-insert-form smaller">
+              <p>What should we insert?</p>
+              <label>value:</label> <input name="newValue" type="text" value="Z">
+              <label>@ index:</label> <input name="newIndex" type="number" min="0" value="3">
+              <button class="btn" type="button" id="insert-button">Insert</button>
+          </form>
+        </section>
+
+
+      </div>
+    </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/dist/reveal.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/plugin/highlight/highlight.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/highlightjs-badge@0.1.9/highlightjs-badge.min.js"></script>
+        <!-- For list insertion animation -->
+        <script src="list_demo.js"></script>
+        <script>
+            const srcUrlPrefix = "https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/";
+            Reveal.initialize({
+                hash: true,
+                center: false,
+                slideNumber: true,
+                showNotes: false,
+                margin: 0.1,
+                preloadIframes: true,
+                plugins: [ RevealHighlight ],
+                pdfSeparateFragments: true,
+                transition: "none"
+            });
+
+            // add HighlightJS-badge (options are optional)
+            var options = {
+                copyIconContent: "📄",
+                checkIconContent: "✅"
+            };
+            window.highlightJsBadge(options);
+
+            if (window.location.search == "?print-pdf") {
+                var uncounted = document.querySelectorAll("[data-visibility='uncounted']");
+                uncounted.forEach(node => {
+                    node.parentNode.classList.add("no-print")
+                })
+            }
+        </script>
+    </body>
+</html>
