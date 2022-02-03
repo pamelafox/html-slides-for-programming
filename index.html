@@ -103,7 +103,9 @@
       <div class="slides">
 
         <section class="heading-only" style="padding-top:5%">
-          <h1>Conclusion</h1>
+          <h1 style="font-size:80px;">Benefits of HTML slides
+            <br>for programming classes
+          </h1>
 
           <div class="no-print" style="text-align: left; margin-top: 100px; font-size: 70%;">
             Tips for navigating the slides:
@@ -117,12 +119,15 @@
         </section>
 
         <section>
-          <h3>Common slide formats</h3>
+          <h3>Traditional slide formats</h3>
 
           <table>
+            <thead>
             <tr>
-              <td>Format</td><td>Benefits</td>
+              <th>Format</th><th>Benefits</th>
             </tr>
+            </thead>
+            <tbody>
             <tr>
               <td>Powerpoint</td><td>Easy diagrams, animations</td>
             </tr>
@@ -132,9 +137,10 @@
             <tr>
               <td>PDF (from LaTeX)</td><td>Good if you love LaTeX!</td>
             </tr>
+            </tbody>
           </table>
 
-          <p>The problem with all of those...
+          <p>The problem with using those for coding classes:
           <ul>
             <li class="fragment">For instructors: Hard to write syntax-highlighted code</li>
             <li class="fragment">For studemts: Hard to copy code</li>
@@ -157,7 +163,6 @@
               <li>Mouse and keyboard navigation</li>
               <li>Speaker notes</li>
               <li>Easy animation/transitions</li>
-              <li>A special print layout</li>
               <li>...much more, especially with plugins!</li>
             </ul>
           </div>
@@ -173,18 +178,19 @@
           <p>The <a href="https://revealjs.com/code/">HighlightJS plugin</a>
           takes care of highlighting code for you, with customizable themes.
           </p>
-          <pre><code data-trim data-noescape class="python">
-          nums = [1, 2, 4]
-          for i in range(0, len(nums)):
-              nums[i] = nums[i] ** 2
+          <pre style="font-size:0.9em;"><code data-trim data-noescape class="python">
+          def sum_nums(nums):
+            sum = 0
+            for num in nums:
+                sum += num
+            return sum
           </code></pre>
-          
-          <p>You can easily reveal parts of the code, by wrapping in a <code>span</code>
+          <br>
+          <p>You can easily reveal parts of the code by wrapping in a <code>span</code>
             with a class of "fragment":</p>
 
-          <pre><code data-trim data-noescape class="python">
-          min(-1, 400, -30)  <span class="fragment"># Result: -30</span>
-          max(-1, 400, -30)  <span class="fragment"># Result: 400</span>
+          <pre style="font-size:0.9em;"><code data-trim data-noescape class="python">
+          sum_nums([1, 2, 3])  <span class="fragment"># Result: 6</span>
           </code></pre>
         </section>
 
@@ -198,14 +204,49 @@
           makes it even easier by adding a copy button.
           </p>
 
-          <pre><code data-trim data-noescape class="python">
+          <pre style="font-size:1.0em;"><code data-trim data-noescape class="python">
           nums = [1, 2, 4]
           for i in range(0, len(nums)):
               nums[i] = nums[i] ** 2
           </code></pre>
         </section>
 
+        <section class="heading-only">
+          <h2>Other features</h2>
+        </section>
+
         <section>
+          <h3>Printability</h3>
+
+          <p>Students still want printed/PDF versions of slides, for note-taking.</p>
+          
+          <p>If you ask a browser to print these slides,
+            it will print one per page, like a PPT/PDF would be printed.
+          </p>
+
+          <p>Or you can automate the creation of PDFs with the 
+            <a target="_blank" href="https://github.com/astefanutti/decktape">decktape</a> slides exporter package.
+          </p>
+        </section>
+
+        <section>
+          <h3>Accessibility</h3>
+
+          <p>HTML webpages are accessible for students with a range of needs,
+            such as vision impairment. Just follow best practices for HTML accessibility, like
+            adding <code>alt</code> attributes to all <code>img</code> tags for screen readers
+            and using appropriate color contrast.
+          </p>
+
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/FibonacciSpiral.svg" alt="Golden spiral overlaid on grid" height="470">
+
+          <pre><code data-trim data-noescape class="html">
+          &lt;img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/FibonacciSpiral.svg"
+                  alt="Golden spiral overlaid on grid" height="470"&gt;
+          </code></pre>
+        </section>
+
+        <section class="heading-only">
           <h2>Animations & simulations</h2>
         </section>
         
@@ -353,43 +394,81 @@
           </form>
         </section>
 
+        <section class="heading-only">
+          <h2>Getting started</h2>
+        </section>
 
+        <section>
+          <h3>Write the HTML yourself</h3>
+
+          <ul>
+            <li>Start from this slide deck (copy the HTML)</li>
+            <li>And/or follow the <a target="_blank" href="https://revealjs.com/installation/">RevealJS tutorial</a></li>
+            <li>Host the slides on your course website or <a target="_blank" href="https://pages.github.com/">Github pages</a></li>
+          </ul>
+
+          <p>If you prefer Markdown, that's <a target="_blank" href="https://revealjs.com/markdown/">also an option</a>.</p>
+
+        </section>
+
+        <section>
+          <h3>Use the online editor</h3>
+
+          <p><a target="_blank" href="https://slides.com/?ref=github">Slides.com</a> 
+          is a WYSIWIG editor for creating and hosting slides using RevealJS.</p>
+        </section>
+
+        <section>
+          <h3>Get inspiration</h3>
+
+          <p>Feel free to adapt my slides from:
+            <ul>
+              <li><a target="_blank" href="https://girldevelopit.github.io/gdi-python/index.html">GDI Intro to Python class</a></li>
+              <li><a target="_blank" href="https://inst.eecs.berkeley.edu/~cs61a/fa21/">Berkeley CS61A</a> (click "html" next to lecture titles)</li>
+            </ul>
+
+          </p>
+          <p>If you use HTML slides for your programming class
+            and are willing to share them for others to use,
+            open an issue on <a href="https://github.com/pamelafox/html-slides-for-programming">github.com/pamelafox/html-slides-for-programming</a>.
+          </p>
+        </section>
       </div>
     </div>
 
 
-        <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/dist/reveal.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/plugin/highlight/highlight.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/highlightjs-badge@0.1.9/highlightjs-badge.min.js"></script>
-        <!-- For list insertion animation -->
-        <script src="list_demo.js"></script>
-        <script>
-            const srcUrlPrefix = "https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/";
-            Reveal.initialize({
-                hash: true,
-                center: false,
-                slideNumber: true,
-                showNotes: false,
-                margin: 0.1,
-                preloadIframes: true,
-                plugins: [ RevealHighlight ],
-                pdfSeparateFragments: true,
-                transition: "none"
-            });
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlightjs-badge@0.1.9/highlightjs-badge.min.js"></script>
+    <!-- For list insertion animation -->
+    <script src="list_demo.js"></script>
+    <script>
+        const srcUrlPrefix = "https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/";
+        Reveal.initialize({
+            hash: true,
+            center: false,
+            slideNumber: true,
+            showNotes: false,
+            margin: 0.1,
+            preloadIframes: true,
+            plugins: [ RevealHighlight ],
+            pdfSeparateFragments: true,
+            transition: "none"
+        });
 
-            // add HighlightJS-badge (options are optional)
-            var options = {
-                copyIconContent: "📄",
-                checkIconContent: "✅"
-            };
-            window.highlightJsBadge(options);
+        // add HighlightJS-badge (options are optional)
+        var options = {
+            copyIconContent: "📄",
+            checkIconContent: "✅"
+        };
+        window.highlightJsBadge(options);
 
-            if (window.location.search == "?print-pdf") {
-                var uncounted = document.querySelectorAll("[data-visibility='uncounted']");
-                uncounted.forEach(node => {
-                    node.parentNode.classList.add("no-print")
-                })
-            }
-        </script>
-    </body>
+        if (window.location.search == "?print-pdf") {
+            var uncounted = document.querySelectorAll("[data-visibility='uncounted']");
+            uncounted.forEach(node => {
+                node.parentNode.classList.add("no-print")
+            })
+        }
+    </script>
+  </body>
 </html>
