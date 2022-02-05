@@ -4,23 +4,37 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Using HTML Slides for Programming Classes</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/dist/reset.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/dist/reveal.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/dist/theme/simple.css" id="theme">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.2.1/dist/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.2.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.2.1/dist/theme/simple.css" id="theme">
     <!-- CSS matching our Berkeley class website-->
     <link rel="stylesheet" href="https://cs61a.org/assets/css/mono-blue.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata|Roboto:300,400,500|Work+Sans:400,700">
     <!-- For list insertion demo -->
     <link rel="stylesheet" href="list_demo.css">
     <style>
-    .reveal {
-      font-family: "Work Sans", sans-serif;
+    :root {
+      --r-heading-font: "Roboto", sans-serif;
+      --r-heading-color: #0072c1;
+
+      --r-main-font: "Work Sans", sans-serif;
+
+      --r-link-color: #0066cc;
+      --r-link-color-hover: #0066cc;
+    }
+
+    .reveal .controls {
+      color: var(--r-main-color);
+    }
+
+    .reveal .progress {
+      color: var(--r-main-color);
     }
 
     .reveal .slides section {
       text-align: left;
       font-size: smaller;
-     }
+    }
 
     .reveal pre {
       background-color: #f5f5f5;
@@ -28,11 +42,6 @@
       border: 1px solid #ccc;
       border-radius: 4px;
       box-shadow: none;
-    }
-
-    .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
-      font-family: "Roboto", sans-serif;
-      color: #0072c1;
     }
 
     .reveal h3 {
@@ -154,18 +163,32 @@
             turn them into an interactive slides experience.
           </p>
 
-          <div class="fragment">
-            <p>The most fully featured JavaScript library is
-              <a href="https://revealjs.com/">RevealJS</a>
-              and it includes support for:
-            </p>
-            <ul>
-              <li>Mouse and keyboard navigation</li>
-              <li>Speaker notes</li>
-              <li>Easy animation/transitions</li>
-              <li>...much more, especially with plugins!</li>
-            </ul>
-          </div>
+          <p>Start with semantic HTML...</p>
+          <pre style="font-size:0.9em;"><code data-trim class="html">
+          &lt;section&gt;
+            &lt;h3&gt;Alternative: HTML slides!&lt;/h3&gt;
+            &lt;p&gt;Write your slides in HTML...
+            &lt;/p&gt;
+          &lt;/section&gt;
+          </code></pre>
+
+          <p>...Then add a bit of JS ➡</p>
+        </section>
+
+
+        <section>
+          <h3>RevealJS</h3>
+
+          <p>The most fully featured JavaScript library is
+            <a href="https://revealjs.com/">RevealJS</a>
+            and it includes support for:
+          </p>
+          <ul>
+            <li>Mouse and keyboard navigation</li>
+            <li>Speaker notes</li>
+            <li>Easy animation/transitions</li>
+            <li>...much more, especially with plugins!</li>
+          </ul>
 
           <aside class="speaker-notes">
             View source to show how these are written. Hi, viewer!
@@ -209,6 +232,29 @@
           for i in range(0, len(nums)):
               nums[i] = nums[i] ** 2
           </code></pre>
+        </section>
+
+        <section>
+          <h3>Runnable code</h3>
+
+          <p>You can even run code directly in the slides, depending on the language you're teaching.</p>
+
+          <pre  style="font-size:0.7em;" contenteditable><code id="run-code" data-trim data-noescape class="python">
+          # Sum up the numbers from 1 to 10
+          sum = 0
+          x = 1
+          while x < 10:
+              sum += x
+              x += 1
+          print(sum)
+          </code></pre>
+
+          <button id="run-button" style="font-size: 21px; padding: 12px; margin-bottom: 20px; border-radius: 8px;">Run code ▶️</button>
+          <div id="run-output" style="font-size: 21px; background: black; color:white; padding: 12px; font-family: Courier, monospace;">
+          &nbsp;
+          </div>
+          <p>Powered by <a target="_blank" href="https://pyodide.org/en/stable/index.html">Pyodide</a>, but many plugins/libraries exist for different languages, like
+          <a target="_blank" href="https://github.com/stanleynguyen/reveal-run-in-terminal">Run-in-terminal</a></p>
         </section>
 
         <section class="heading-only">
@@ -437,8 +483,12 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/dist/reveal.js"></script>
+    <!-- For code highlighting -->
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/plugin/highlight/highlight.js"></script>
+    <!-- For code copy-to-clipboard button -->
     <script src="https://cdn.jsdelivr.net/npm/highlightjs-badge@0.1.9/highlightjs-badge.min.js"></script>
+    <!-- For runnable code demo -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.js"></script>
     <!-- For list insertion animation -->
     <script src="list_demo.js"></script>
     <script>
@@ -468,6 +518,21 @@
                 node.parentNode.classList.add("no-print")
             })
         }
+
+        async function main() {
+          let pyodide = await loadPyodide({
+            indexURL : "https://cdn.jsdelivr.net/pyodide/v0.19.0/full/",
+            stdout: function(line) {
+              if (line != "Python initialization complete") {
+                document.getElementById("run-output").innerText = line;
+              }
+            }
+          });
+          document.getElementById("run-button").addEventListener("click", function() {
+            pyodide.runPython(document.getElementById("run-code").innerText);
+          });
+        };
+        main();
     </script>
   </body>
 </html>
