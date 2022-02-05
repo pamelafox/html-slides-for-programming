@@ -208,13 +208,6 @@
               sum += num
             return sum
           </code></pre>
-          <br>
-          <p>You can easily reveal parts of the code by wrapping in a <code>span</code>
-            with a class of "fragment":</p>
-
-          <pre style="font-size:0.9em;"><code data-trim data-noescape class="python">
-          sum_nums([1, 2, 3])  <span class="fragment"># Result: 6</span>
-          </code></pre>
         </section>
 
         <section>
@@ -292,9 +285,35 @@
         </section>
 
         <section class="heading-only">
-          <h2>Animations & simulations</h2>
+          <h2>Animations</h2>
         </section>
         
+        <section>
+          <h3>Slide fragments</h3>
+
+          <p>Parts of a slide can be revealed using "fragments".</p>
+
+          <p>
+            Add a class attribute of "fragment" to the HTML tag,
+            and the fragment will be revealed in order.
+          </p>
+
+          <pre style="font-size:0.9em;" class="fragment"><code data-trim class="html">
+          &lt;p class="fragment"&gt;
+             Add a class attribute of "fragment"...
+          &lt;/p&gt;
+          </code></pre>
+          <br>
+          <div class="fragment">
+          <p>You can use fragments for anything, even parts of code blocks.
+            Just wrap the code in a <code>&lt;span class="fragment"&gt;</code>.</p>
+
+          <pre style="font-size:0.9em;"><code data-trim data-noescape class="python">
+          sum_nums([1, 2, 3])  <span class="fragment"># Result: 6</span>
+          </code></pre>
+          </div>
+        </section>
+
         <section>
           <h3>Animated diagrams</h3>
 
